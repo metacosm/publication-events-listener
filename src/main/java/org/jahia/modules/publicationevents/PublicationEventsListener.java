@@ -39,6 +39,7 @@
  */
 package org.jahia.modules.publicationevents;
 
+import org.apache.jackrabbit.core.query.lucene.JahiaIndexingConfigurationImpl;
 import org.jahia.registries.ServicesRegistry;
 import org.jahia.services.content.*;
 import org.jahia.services.usermanager.JahiaGroupManagerService;
@@ -53,6 +54,8 @@ import java.util.*;
  * @author Christophe Laprun
  */
 public class PublicationEventsListener extends DefaultEventListener {
+    private JahiaIndexingConfigurationImpl indexingConfiguration;
+
     @Override
     public int getEventTypes() {
         return Event.NODE_ADDED + Event.NODE_MOVED + Event.NODE_REMOVED + Event.PERSIST + Event.PROPERTY_ADDED + Event.PROPERTY_CHANGED + Event.PROPERTY_REMOVED;
@@ -130,5 +133,9 @@ public class PublicationEventsListener extends DefaultEventListener {
                 e.printStackTrace();
             }
         }
+    }
+
+    public void setRepository(org.jahia.services.content.impl.jackrabbit.SpringJackrabbitRepository repository) {
+        indexingConfiguration = repository.getIndexingConfiguration();
     }
 }

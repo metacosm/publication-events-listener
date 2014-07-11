@@ -5,5 +5,6 @@
   <bean class="org.jahia.modules.publicationevents.PublicationEventsListener">
     <property name="workspace" value="live"/>
     <property name="availableDuringPublish" value="true"/>
+    <property name="repository" ref="jackrabbit"/>
   </bean>
 </beans>
